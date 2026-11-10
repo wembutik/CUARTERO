@@ -1,0 +1,120 @@
+/* Basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background: #ffffff;
+    border: 2px solid #d0d7de;
+    padding: 18px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+    .header h1 {
+        letter-spacing: 1px;
+        font-size: 1.6rem;
+    }
+
+.highlight {
+    color: #0b63d6;
+    font-weight: 600;
+}
+
+/* Main layout */
+.main-area {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Content */
+.content {
+    flex: 2;
+    background: #fff;
+    border: 1px solid #e0e6ea;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e0e6ea;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+    .sidebar ul {
+        margin-left: 20px;
+    }
+
+/* Profile card */
+.profile-card {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    border: 2px dashed #c8d5e8;
+    padding: 12px;
+    margin-bottom: 14px;
+    background: #fbfdff;
+}
+
+.avatar {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 3px solid #dbe9ff;
+}
+
+/* Button */
+.contact-btn {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #0b63d6;
+    color: white;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 16px;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+    .main-area {
+        flex-direction: column;
+    }
+
+    .avatar {
+        width: 72px;
+        height: 72px;
+    }
+}
