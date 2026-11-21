@@ -3,47 +3,1319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Portfolio Lab 3</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ByteFix Corner - IT-101 Final Project</title>
+
+    <!-- Google Fonts: Poppins & Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- =================================================================
+         INTERNAL CSS STYLESHEET (Pure Hand-Coded CSS3 - No Frameworks)
+    ================================================================== -->
+    <style>
+        /* Reset default browser margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 1. TOP ANNOUNCEMENT MARQUEE BANNER */
+        .top-banner {
+            background-color: #090e1a;
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            padding: 8px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.4px;
+        }
+
+        /* 2. HEADER & 4-PAGE NAVIGATION BAR (Flexbox) */
+        header {
+            background-color: #1e293b;
+            border-bottom: 3px solid #2dd4bf;
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #38bdf8;
+            text-decoration: none;
+            text-shadow: 2px 2px 0px #090e1a;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #2dd4bf;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 14px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active-nav {
+            background-color: #38bdf8;
+            color: #0f172a;
+            border-color: #f8fafc;
+            text-decoration: underline;
+        }
+
+        /* MULTI-PAGE SYSTEM & SIMULATED FILE BREADCRUMB BAR */
+        .page-view {
+            display: none;
+            animation: fadeInPage 0.3s ease-in-out;
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .breadcrumb-bar {
+            background-color: #1e293b;
+            border: 2px solid #2dd4bf;
+            border-radius: 6px;
+            padding: 10px 16px;
+            margin-bottom: 24px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb-bar span {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 72vh;
+        }
+
+        /* SECTION HEADINGS */
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #38bdf8;
+            border-left: 6px solid #2dd4bf;
+            padding-left: 14px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3. HERO WELCOME BANNER */
+        .hero-box {
+            background: linear-gradient(135deg, #1e293b 0%, #16243b 55%, #112a32 100%);
+            border: 2px solid #38bdf8;
+            border-radius: 8px;
+            padding: 46px 28px;
+            text-align: center;
+            margin-bottom: 38px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: #2dd4bf;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .hero-box h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin-bottom: 14px;
+            text-shadow: 2px 2px 0px #090e1a;
+        }
+
+        .hero-box h1 span {
+            color: #38bdf8;
+        }
+
+        .hero-box p {
+            max-width: 740px;
+            margin: 0 auto 26px auto;
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* STUDENT BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-blue {
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: 2px solid #f8fafc;
+        }
+
+        .btn-blue:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.55);
+        }
+
+        .btn-teal {
+            background-color: #2dd4bf;
+            color: #0f172a;
+            border: 2px solid #f8fafc;
+        }
+
+        .btn-teal:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 14px rgba(45, 212, 191, 0.55);
+        }
+
+        /* 4. CSS GRID FOR CARDS (Featured Services, Full Services, Directory) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            border-color: #2dd4bf;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .service-banner {
+            width: 100%;
+            height: 155px;
+            background-color: #090e1a;
+            border-bottom: 2px solid #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-info {
+            padding: 18px;
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background-color: #0f172a;
+            color: #2dd4bf;
+            border: 1px solid #2dd4bf;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .turnaround-tag {
+            display: inline-block;
+            background-color: #0f172a;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .service-info h3 {
+            font-size: 19px;
+            color: #f8fafc;
+            margin-bottom: 6px;
+        }
+
+        .service-info p {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .rate-tag {
+            font-size: 18px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .card-footer {
+            padding: 0 18px 18px 18px;
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            border: 2px solid #f8fafc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .card-btn:hover {
+            background-color: #2dd4bf;
+        }
+
+        /* DIRECTORY BOXES ON HOME PAGE */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .dir-card {
+            background-color: #1e293b;
+            border: 2px solid #2dd4bf;
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .dir-card:hover {
+            transform: translateY(-4px);
+            border-color: #38bdf8;
+        }
+
+        .dir-card h4 {
+            color: #38bdf8;
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .dir-card p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+        }
+
+        /* SERVICES FILTER BAR & DETAIL/QUOTE PREVIEW BOX */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .filter-btn {
+            background-color: #1e293b;
+            color: #f8fafc;
+            border: 2px solid #38bdf8;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active-filter {
+            background-color: #2dd4bf;
+            color: #0f172a;
+            border-color: #f8fafc;
+        }
+
+        .quote-preview-box {
+            background-color: #1e293b;
+            border: 2px solid #2dd4bf;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-bottom: 26px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .quote-preview-text h4 {
+            color: #2dd4bf;
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        .quote-preview-text p {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* 5. HTML TABLES ON RATES & SCHEDULE PAGE */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 2px solid #38bdf8;
+            border-radius: 8px;
+            margin-bottom: 38px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e293b;
+            text-align: left;
+        }
+
+        th {
+            background-color: #090e1a;
+            color: #38bdf8;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 14px 16px;
+            border-bottom: 2px solid #38bdf8;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #334155;
+            font-size: 15px;
+            color: #f8fafc;
+        }
+
+        /* Classic alternating row shading */
+        tr:nth-child(even) {
+            background-color: #172033;
+        }
+
+        tr:hover {
+            background-color: #26354d;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+        }
+
+        .status-open {
+            background-color: #2dd4bf;
+            color: #0f172a;
+        }
+
+        .status-slots {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* 6. ABOUT & BOOKING 2-COLUMN CSS GRID & FORM */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .dev-profile-card {
+            background-color: #1e293b;
+            border: 2px solid #2dd4bf;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        .dev-profile-card h3 {
+            color: #38bdf8;
+            margin: 12px 0 6px 0;
+            font-size: 21px;
+        }
+
+        .dev-profile-card p {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .dev-specs {
+            list-style: none;
+            text-align: left;
+            margin-top: 14px;
+            border-top: 1px solid #334155;
+            padding-top: 14px;
+            font-size: 14px;
+        }
+
+        .dev-specs li {
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        .dev-specs strong {
+            color: #2dd4bf;
+        }
+
+        .form-section {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 8px;
+            padding: 28px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #f8fafc;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 12px;
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 6px;
+            color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2dd4bf;
+        }
+
+        .submit-btn {
+            background-color: #2dd4bf;
+            color: #0f172a;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 24px;
+            border: 2px solid #f8fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #38bdf8;
+            transform: scale(1.02);
+        }
+
+        .confirmation-box {
+            display: none;
+            margin-top: 18px;
+            padding: 15px;
+            background-color: #132a33;
+            border: 2px solid #2dd4bf;
+            border-radius: 6px;
+            color: #f8fafc;
+            font-size: 14px;
+        }
+
+        /* 7. STUDENT FOOTER */
+        footer {
+            background-color: #090e1a;
+            border-top: 3px solid #38bdf8;
+            text-align: center;
+            padding: 24px 15px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: #38bdf8;
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 920px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .directory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            .hero-box h1 {
+                font-size: 28px;
+            }
+            .cards-grid,
+            .directory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
 
-        <header class="header">
-            <h1>IT Portfolio <span class="highlight">Lab 3</span></h1>
-        </header>
+    <!-- =================================================================
+         TOP ANNOUNCEMENT MARQUEE BANNER
+    ================================================================== -->
+    <div class="top-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            💻 WELCOME TO AD'S CORNER! &nbsp;|&nbsp; 🔧 CAMPUS TECH &amp; GADGET REPAIR / PC BUILD CORNER &nbsp;|&nbsp; 🎓 FREE DIAGNOSTICS FOR STUDENTS WITH VALID SCHOOL ID &nbsp;|&nbsp; ⚡ FAST OS TUNE-UPS, DUST CLEANING &amp; PERIPHERAL CHECKS!
+        </marquee>
+    </div>
 
-        <main class="main-area">
+    <!-- =================================================================
+         HEADER WITH LOGO & 4-PAGE NAVIGATION BAR
+    ================================================================== -->
+    <header>
+        <a href="#home" class="logo" onclick="switchPage('home', event)">&lt;/&gt; AD'S <span>CORNER</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home" id="nav-home" class="active-nav" onclick="switchPage('home', event)">Home</a></li>
+                <li><a href="#services" id="nav-services" onclick="switchPage('services', event)">Services</a></li>
+                <li><a href="#rates" id="nav-rates" onclick="switchPage('rates', event)">Rates &amp; Schedule</a></li>
+                <li><a href="#contact" id="nav-contact" onclick="switchPage('contact', event)">Book &amp; About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <section class="content">
-                <div class="profile-card">
-                    <img class="avatar" src="Legnapic.jpg" alt="Profile photo">
-                    <div class="profile-info">
-                        <h2>Angel Dominic T. Cuartero</h2>
-                        <p><strong>Role:</strong> IT Student</p>
-                        <p>Short bio: I am learning HTML and CSS.</p>
-                        <button class="contact-btn">Contact Me</button>
+    <!-- =================================================================
+         MAIN CONTENT WRAPPER (CONTAINS ALL 4 SWITCHABLE PAGES)
+    ================================================================== -->
+    <main class="container">
+
+        <!-- =============================================================
+             PAGE 1: HOME (index.html)
+        ============================================================== -->
+        <div id="page-home" class="page-view active-page">
+            <div class="breadcrumb-bar">
+                <div>Current File: <span>index.html</span> (Page 1 of 4)</div>
+                <div>Path: Home / Campus Tech Corner</div>
+            </div>
+
+            <!-- Hero Welcome Banner -->
+            <section class="hero-box">
+                <span class="hero-badge">IT-101 Campus Tech &amp; Gadget Repair Corner</span>
+                <h1>KEEP YOUR RIG &amp; LAPTOP <span>FAST &amp; READY FOR CLASS</span></h1>
+                <p>
+                    Welcome to AD's Corner! Built by a freshman BSIT student to help fellow students with slow laptops, OS reinstallation, thermal paste and dust cleaning, PC build checks, and peripheral troubleshooting without breaking your allowance.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-blue" onclick="switchPage('services', event)">Browse Services &rarr;</button>
+                    <button class="btn btn-teal" onclick="switchPage('rates', event)">View Service Rates &rarr;</button>
+                </div>
+            </section>
+
+            <!-- Featured Services (3-Card Grid with Custom SVG Icons) -->
+            <h2 class="section-title">Featured Student Services</h2>
+            <div class="cards-grid">
+
+                <!-- Featured 1: OS & Software Tune-Up -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                                <!-- Terminal / OS Window -->
+                                <rect x="16" y="22" width="78" height="62" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+                                <line x1="16" y1="36" x2="94" y2="36" stroke="#38bdf8" stroke-width="2.5"/>
+                                <circle cx="26" cy="29" r="3" fill="#2dd4bf"/>
+                                <circle cx="36" cy="29" r="3" fill="#38bdf8"/>
+                                <!-- Command Prompt & Gear -->
+                                <polyline points="28,52 38,60 28,68" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="44" y1="68" x2="62" y2="68" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+                                <circle cx="74" cy="60" r="9" stroke="#2dd4bf" stroke-width="3"/>
+                                <circle cx="74" cy="60" r="3" fill="#38bdf8"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Software &amp; OS</span>
+                                <span class="turnaround-tag">~1–2 Hours</span>
+                            </div>
+                            <h3>OS &amp; Software Tune-Up</h3>
+                            <p>Clean OS setup, driver updates, startup optimization, and junk cleanup for lag-free coding and lab work.</p>
+                            <div class="rate-tag">₱250.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="switchPage('services', event)">See All Services</button>
                     </div>
                 </div>
 
-                <p>This page demonstrates the box model, borders, padding, margins and responsive design.</p>
-            </section>
+                <!-- Featured 2: Thermal Paste & Dust Cleaning -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                                <!-- Cooling Fan Housing -->
+                                <circle cx="55" cy="55" r="34" fill="#1e293b" stroke="#2dd4bf" stroke-width="3"/>
+                                <circle cx="55" cy="55" r="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+                                <!-- Fan Blades -->
+                                <path d="M55 21 C65 21 68 34 55 45 C42 34 45 21 55 21 Z" fill="#38bdf8" opacity="0.85"/>
+                                <path d="M89 55 C89 65 76 68 65 55 C76 42 89 45 89 55 Z" fill="#2dd4bf" opacity="0.85"/>
+                                <path d="M55 89 C45 89 42 76 55 65 C68 76 65 89 55 89 Z" fill="#38bdf8" opacity="0.85"/>
+                                <path d="M21 55 C21 45 34 42 45 55 C34 68 21 65 21 55 Z" fill="#2dd4bf" opacity="0.85"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Laptop &amp; PC Care</span>
+                                <span class="turnaround-tag">~45–60 Mins</span>
+                            </div>
+                            <h3>Thermal Paste &amp; Dust Cleaning</h3>
+                            <p>Blower and brush dust removal plus fresh thermal paste application to lower high temperatures and fan noise.</p>
+                            <div class="rate-tag">₱300.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="switchPage('services', event)">See All Services</button>
+                    </div>
+                </div>
 
-            <aside class="sidebar">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="https://wembutik.github.io/CUARTERO/">Home</a></li>
-                    <li><a href="https://github.com/wembutik/CUARTERO">Projects</a></li>
-                    <li><a href="https://www.facebook.com/angeldominic.cuartero.5/">Contact</a></li>
-                </ul>
-            </aside>
+                <!-- Featured 3: Campus Tech Helpdesk -->
+                <div class="service-card">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
+                                <!-- Headset / Tech Support Icon -->
+                                <path d="M26 62 V52 A29 29 0 0 1 84 52 V62" stroke="#38bdf8" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <rect x="20" y="54" width="14" height="24" rx="5" fill="#2dd4bf"/>
+                                <rect x="76" y="54" width="14" height="24" rx="5" fill="#2dd4bf"/>
+                                <!-- Mic Boom -->
+                                <path d="M83 76 Q80 90 60 90" stroke="#38bdf8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                                <circle cx="56" cy="90" r="4" fill="#2dd4bf"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Helpdesk</span>
+                                <span class="turnaround-tag">Same Day</span>
+                            </div>
+                            <h3>Campus Tech Helpdesk</h3>
+                            <p>Friendly student troubleshooting for IDE setups, Wi-Fi/driver glitches, keyboard/mouse checks, and upgrade advice.</p>
+                            <div class="rate-tag">₱100.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="switchPage('services', event)">See All Services</button>
+                    </div>
+                </div>
 
-        </main>
+            </div>
 
-        <footer class="footer">
-            <p>&copy; 2025 — CSIT Lab</p>
-        </footer>
+            <!-- 4-Page Overview Section -->
+            <h2 class="section-title">4-Page Project Overview</h2>
+            <div class="directory-grid">
+                <div class="dir-card">
+                    <h4>1. Home</h4>
+                    <p>Campus tech welcome banner, top student services, and quick navigation.</p>
+                    <button class="card-btn" onclick="switchPage('home', event)">Current View</button>
+                </div>
+                <div class="dir-card">
+                    <h4>2. Services</h4>
+                    <p>Filterable repair &amp; upgrade services with interactive quote preview.</p>
+                    <button class="card-btn" onclick="switchPage('services', event)">Open Services</button>
+                </div>
+                <div class="dir-card">
+                    <h4>3. Rates</h4>
+                    <p>Student price tables in PHP (₱) and campus booth schedule.</p>
+                    <button class="card-btn" onclick="switchPage('rates', event)">Open Rates</button>
+                </div>
+                <div class="dir-card">
+                    <h4>4. Book &amp; About</h4>
+                    <p>Student developer profile and repair booking / inquiry form.</p>
+                    <button class="card-btn" onclick="switchPage('contact', event)">Open Booking</button>
+                </div>
+            </div>
+        </div>
 
-    </div>
+        <!-- =============================================================
+             PAGE 2: SERVICES (services.html)
+        ============================================================== -->
+        <div id="page-services" class="page-view">
+            <div class="breadcrumb-bar">
+                <div>Current File: <span>services.html</span> (Page 2 of 4)</div>
+                <div>Path: Home / Services</div>
+            </div>
+
+            <h2 class="section-title">Tech &amp; PC Services Catalog</h2>
+
+            <!-- Category Filter Buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn active-filter" onclick="filterServices('ALL', this)">All Services (6)</button>
+                <button class="filter-btn" onclick="filterServices('LAPTOP_PC', this)">Laptop &amp; PC Care</button>
+                <button class="filter-btn" onclick="filterServices('SOFTWARE_OS', this)">Software &amp; OS</button>
+                <button class="filter-btn" onclick="filterServices('PERIPHERALS', this)">Peripherals &amp; Upgrades</button>
+            </div>
+
+            <!-- Clickable Detail / Quote Preview Box -->
+            <div id="quotePreviewBox" class="quote-preview-box">
+                <div class="quote-preview-text">
+                    <h4 id="previewTitle">Quote Preview: Select any service card below</h4>
+                    <p id="previewDesc">Click "Select for Quote" on any service card to check estimated student pricing, turnaround time, and jump straight to booking.</p>
+                </div>
+                <button class="btn btn-teal" onclick="switchPage('contact', event)">Book Selected Service &rarr;</button>
+            </div>
+
+            <!-- 6-Card Services Grid -->
+            <div class="cards-grid" id="servicesGrid">
+
+                <!-- Service 1: Thermal Paste & Dust Cleaning -->
+                <div class="service-card" data-category="LAPTOP_PC">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <circle cx="55" cy="55" r="34" fill="#1e293b" stroke="#2dd4bf" stroke-width="3"/>
+                                <circle cx="55" cy="55" r="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+                                <path d="M55 21 C65 21 68 34 55 45 C42 34 45 21 55 21 Z" fill="#38bdf8"/>
+                                <path d="M89 55 C89 65 76 68 65 55 C76 42 89 45 89 55 Z" fill="#2dd4bf"/>
+                                <path d="M55 89 C45 89 42 76 55 65 C68 76 65 89 55 89 Z" fill="#38bdf8"/>
+                                <path d="M21 55 C21 45 34 42 45 55 C34 68 21 65 21 55 Z" fill="#2dd4bf"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Laptop &amp; PC Care</span>
+                                <span class="turnaround-tag">45–60 Mins</span>
+                            </div>
+                            <h3>Thermal Paste &amp; Dust Cleaning</h3>
+                            <p>Deep dust blow-out on heatsinks/fans and fresh thermal paste to stop thermal throttling.</p>
+                            <div class="rate-tag">₱300.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('Thermal Paste & Dust Cleaning', '₱300.00', '45–60 Mins', 'Includes fan/heatsink dust removal and fresh thermal compound reapplication.')">Select for Quote</button>
+                    </div>
+                </div>
+
+                <!-- Service 2: PC Cable & Airflow Check -->
+                <div class="service-card" data-category="LAPTOP_PC">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <!-- PC Tower Outline -->
+                                <rect x="30" y="18" width="50" height="74" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+                                <circle cx="55" cy="40" r="10" stroke="#2dd4bf" stroke-width="2.5"/>
+                                <line x1="40" y1="62" x2="70" y2="62" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="40" y1="72" x2="70" y2="72" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Laptop &amp; PC Care</span>
+                                <span class="turnaround-tag">30–45 Mins</span>
+                            </div>
+                            <h3>PC Cable &amp; Airflow Check</h3>
+                            <p>Tidy internal case cabling, verify fan orientation, and inspect power/data connectors.</p>
+                            <div class="rate-tag">₱200.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('PC Cable & Airflow Check', '₱200.00', '30–45 Mins', 'Organizes PSU cables, optimizes intake/exhaust airflow, and checks loose headers.')">Select for Quote</button>
+                    </div>
+                </div>
+
+                <!-- Service 3: OS & Software Tune-Up -->
+                <div class="service-card" data-category="SOFTWARE_OS">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <rect x="16" y="22" width="78" height="62" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+                                <line x1="16" y1="36" x2="94" y2="36" stroke="#38bdf8" stroke-width="2.5"/>
+                                <polyline points="28,52 38,60 28,68" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="44" y1="68" x2="64" y2="68" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Software &amp; OS</span>
+                                <span class="turnaround-tag">1–2 Hours</span>
+                            </div>
+                            <h3>OS &amp; Software Tune-Up</h3>
+                            <p>System cleanup, driver updates, bloatware removal, and boot-speed tuning for smooth schoolwork.</p>
+                            <div class="rate-tag">₱250.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('OS & Software Tune-Up', '₱250.00', '1–2 Hours', 'Speeds up slow systems, updates drivers, and configures essential school/dev tools.')">Select for Quote</button>
+                    </div>
+                </div>
+
+                <!-- Service 4: Fresh OS Install & Dev Setup -->
+                <div class="service-card" data-category="SOFTWARE_OS">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <!-- USB / Storage Drive -->
+                                <rect x="34" y="36" width="42" height="52" rx="6" fill="#1e293b" stroke="#2dd4bf" stroke-width="3"/>
+                                <rect x="43" y="18" width="24" height="18" rx="2" fill="#38bdf8"/>
+                                <circle cx="48" cy="27" r="2.5" fill="#0f172a"/>
+                                <circle cx="62" cy="27" r="2.5" fill="#0f172a"/>
+                                <line x1="44" y1="60" x2="66" y2="60" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Software &amp; OS</span>
+                                <span class="turnaround-tag">2–3 Hours</span>
+                            </div>
+                            <h3>Fresh OS Install &amp; Dev Setup</h3>
+                            <p>Clean OS installation plus optional VS Code, Git, browser, and office essentials (bring license/key).</p>
+                            <div class="rate-tag">₱350.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('Fresh OS Install & Dev Setup', '₱350.00', '2–3 Hours', 'Fresh operating system install with core drivers and student coding environment setup.')">Select for Quote</button>
+                    </div>
+                </div>
+
+                <!-- Service 5: SSD / RAM Upgrade Install -->
+                <div class="service-card" data-category="PERIPHERALS">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <!-- RAM / Memory Stick -->
+                                <rect x="18" y="38" width="74" height="32" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+                                <rect x="28" y="46" width="12" height="12" rx="2" fill="#2dd4bf"/>
+                                <rect x="48" y="46" width="12" height="12" rx="2" fill="#2dd4bf"/>
+                                <rect x="68" y="46" width="12" height="12" rx="2" fill="#2dd4bf"/>
+                                <line x1="24" y1="70" x2="86" y2="70" stroke="#38bdf8" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Peripherals &amp; Upgrades</span>
+                                <span class="turnaround-tag">30–45 Mins</span>
+                            </div>
+                            <h3>RAM / SSD Upgrade Install</h3>
+                            <p>Safe installation of extra RAM sticks or NVMe/SATA SSD storage (parts supplied by student).</p>
+                            <div class="rate-tag">₱200.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('RAM / SSD Upgrade Install', '₱200.00', '30–45 Mins', 'Labor for installing student-provided RAM or SSD and verifying capacity in BIOS/OS.')">Select for Quote</button>
+                    </div>
+                </div>
+
+                <!-- Service 6: Keyboard & Peripheral Check -->
+                <div class="service-card" data-category="PERIPHERALS">
+                    <div>
+                        <div class="service-banner">
+                            <svg width="105" height="105" viewBox="0 0 110 110" fill="none">
+                                <!-- Mechanical Keyboard Outline -->
+                                <rect x="16" y="36" width="78" height="40" rx="6" fill="#1e293b" stroke="#2dd4bf" stroke-width="3"/>
+                                <rect x="24" y="44" width="10" height="8" rx="1.5" fill="#38bdf8"/>
+                                <rect x="38" y="44" width="10" height="8" rx="1.5" fill="#38bdf8"/>
+                                <rect x="52" y="44" width="10" height="8" rx="1.5" fill="#38bdf8"/>
+                                <rect x="66" y="44" width="20" height="8" rx="1.5" fill="#2dd4bf"/>
+                                <rect x="30" y="58" width="50" height="8" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="service-info">
+                            <div class="badge-row">
+                                <span class="category-tag">Peripherals &amp; Upgrades</span>
+                                <span class="turnaround-tag">20–30 Mins</span>
+                            </div>
+                            <h3>Keyboard &amp; Peripheral Check</h3>
+                            <p>Key-chatter testing, switch/keycap cleaning, and USB/Bluetooth mouse &amp; headset diagnostics.</p>
+                            <div class="rate-tag">₱120.00</div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn" onclick="selectQuote('Keyboard & Peripheral Check', '₱120.00', '20–30 Mins', 'Tests key matrix, cleans dust under keycaps, and checks USB ports/dongles.')">Select for Quote</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =============================================================
+             PAGE 3: RATES & SCHEDULE (rates.html)
+        ============================================================== -->
+        <div id="page-rates" class="page-view">
+            <div class="breadcrumb-bar">
+                <div>Current File: <span>rates.html</span> (Page 3 of 4)</div>
+                <div>Path: Home / Rates &amp; Schedule</div>
+            </div>
+
+            <!-- Table 1: Student Service Rates & Turnaround Times (PHP ₱) -->
+            <h2 class="section-title">Student Service Rates &amp; Turnaround Times</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service Item</th>
+                            <th>Category</th>
+                            <th>Est. Turnaround</th>
+                            <th>Student Rate (PHP)</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Campus Tech Helpdesk</strong></td>
+                            <td>Helpdesk</td>
+                            <td>Same Day (15–30m)</td>
+                            <td><strong>₱100.00</strong></td>
+                            <td>Basic troubleshooting &amp; setup advice</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keyboard &amp; Peripheral Check</strong></td>
+                            <td>Peripherals &amp; Upgrades</td>
+                            <td>20–30 Mins</td>
+                            <td><strong>₱120.00</strong></td>
+                            <td>Key test, cleaning &amp; port check</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PC Cable &amp; Airflow Check</strong></td>
+                            <td>Laptop &amp; PC Care</td>
+                            <td>30–45 Mins</td>
+                            <td><strong>₱200.00</strong></td>
+                            <td>Desktop tower cable &amp; fan check</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RAM / SSD Upgrade Install</strong></td>
+                            <td>Peripherals &amp; Upgrades</td>
+                            <td>30–45 Mins</td>
+                            <td><strong>₱200.00</strong></td>
+                            <td>Labor only (bring your own part)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OS &amp; Software Tune-Up</strong></td>
+                            <td>Software &amp; OS</td>
+                            <td>1–2 Hours</td>
+                            <td><strong>₱250.00</strong></td>
+                            <td>Cleanup, drivers &amp; speed boost</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thermal Paste &amp; Dust Cleaning</strong></td>
+                            <td>Laptop &amp; PC Care</td>
+                            <td>45–60 Mins</td>
+                            <td><strong>₱300.00</strong></td>
+                            <td>Includes fan clean + thermal paste</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fresh OS Install &amp; Dev Setup</strong></td>
+                            <td>Software &amp; OS</td>
+                            <td>2–3 Hours</td>
+                            <td><strong>₱350.00</strong></td>
+                            <td>Clean OS + coding tools setup</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table 2: Campus Booth Schedule & Queue Status -->
+            <h2 class="section-title">Campus Booth Schedule &amp; Queue Status</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day / Schedule</th>
+                            <th>Booth Location</th>
+                            <th>Operating Hours</th>
+                            <th>Available Slots</th>
+                            <th>Queue Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Monday &amp; Wednesday</strong></td>
+                            <td>SV Building</td>
+                            <td>1:00 PM – 5:30 PM</td>
+                            <td>5 Slots Left Today</td>
+                            <td><span class="status-badge status-open">ACCEPTING</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tuesday &amp; Thursday</strong></td>
+                            <td>ST Quadrangle</td>
+                            <td>10:30 AM – 4:00 PM</td>
+                            <td>3 Slots Left Today</td>
+                            <td><span class="status-badge status-slots">LIMITED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Friday</strong></td>
+                            <td>CT Building</td>
+                            <td>1:00 PM – 6:00 PM</td>
+                            <td>6 Slots Left</td>
+                            <td><span class="status-badge status-open">ACCEPTING</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saturday</strong></td>
+                            <td>Ozanam Building</td>
+                            <td>9:00 AM – 3:00 PM</td>
+                            <td>4 Slots Left</td>
+                            <td><span class="status-badge status-slots">BY APPOINTMENT</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- =============================================================
+             PAGE 4: BOOK & ABOUT (contact.html)
+        ============================================================== -->
+        <div id="page-contact" class="page-view">
+            <div class="breadcrumb-bar">
+                <div>Current File: <span>contact.html</span> (Page 4 of 4)</div>
+                <div>Path: Home / Book &amp; About</div>
+            </div>
+
+            <div class="about-grid">
+                <!-- Left Column: About the Student Dev Card -->
+                <div class="dev-profile-card">
+                    <svg width="92" height="92" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="46" stroke="#38bdf8" stroke-width="4" fill="#0f172a"/>
+                        <circle cx="50" cy="38" r="14" fill="#2dd4bf"/>
+                        <path d="M26 78 C28 62, 72 62, 74 78" stroke="#38bdf8" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    </svg>
+                    <h3>About the Student Dev</h3>
+                    <p>
+                        Hi! I am a 1st-year BSIT student building this website while helping classmates keep their laptops, PCs, and peripherals running smoothly between classes.
+                    </p>                 
+                </div>
+
+                <!-- Right Column: Book a Repair / Inquiry Form -->
+                <section class="form-section">
+                    <h2 class="section-title">Book a Repair / Inquiry</h2>
+                    <p style="color: #cbd5e1; margin-bottom: 18px; font-size: 14px;">
+                        Need a tune-up, dust cleaning, OS reinstall, or quick tech check? Fill out the form below to reserve a slot.
+                    </p>
+
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="studentName">Student Name:</label>
+                            <input type="text" id="studentName" name="studentName" placeholder="e.g., Juan Dela Cruz" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courseSection">Course / Section:</label>
+                            <input type="text" id="courseSection" name="courseSection" placeholder="e.g., BSIT 1-A" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deviceType">Device Type:</label>
+                            <select id="deviceType" name="deviceType" required>
+                                <option value="">-- Select Device Type --</option>
+                                <option value="Laptop (Windows / Linux)">Laptop (Windows / Linux)</option>
+                                <option value="Desktop PC / Custom Rig">Desktop PC / Custom Rig</option>
+                                <option value="Keyboard / Mouse / Headset">Keyboard / Mouse / Headset</option>
+                                <option value="Storage (SSD / HDD / Flash Drive)">Storage (SSD / HDD / Flash Drive)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="issueDesc">Issue Description / Requested Service:</label>
+                            <textarea id="issueDesc" name="issueDesc" rows="4" placeholder="Describe what is happening (e.g., overheating fans, slow boot, need OS tune-up or RAM upgrade)..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Repair Booking</button>
+                    </form>
+
+                    <!-- Instant Confirmation Feedback -->
+                    <div id="bookingConfirmation" class="confirmation-box"></div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- =================================================================
+         CLASSIC STUDENT-MADE FOOTER
+    ================================================================== -->
+    <footer>
+        <p>Made with HTML &amp; CSS | <strong>BSIT 1st Year Web Dev Project</strong> &mdash; ByteFix Corner (IT-101)</p>
+    </footer>
+
+    <!-- =================================================================
+         JAVASCRIPT FOR 4-PAGE NAVIGATION, SERVICE FILTER, QUOTE & BOOKING
+    ================================================================== -->
+    <script>
+        // Switch cleanly between the 4 pages (home, services, rates, contact)
+        function switchPage(pageName, event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => link.classList.remove('active-nav'));
+
+            const targetPage = document.getElementById('page-' + pageName);
+            const targetNav = document.getElementById('nav-' + pageName);
+
+            if (targetPage) targetPage.classList.add('active-page');
+            if (targetNav) targetNav.classList.add('active-nav');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Filter service cards by category on Services page
+        function filterServices(category, btnElement) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active-filter'));
+            btnElement.classList.add('active-filter');
+
+            const cards = document.querySelectorAll('#servicesGrid .service-card');
+            cards.forEach(card => {
+                if (category === 'ALL' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Update the detail/quote preview box when a service is selected
+        function selectQuote(serviceName, rate, turnaround, details) {
+            const titleEl = document.getElementById('previewTitle');
+            const descEl = document.getElementById('previewDesc');
+            const boxEl = document.getElementById('quotePreviewBox');
+
+            titleEl.textContent = "Quote Preview: " + serviceName + " — " + rate + " (" + turnaround + ")";
+            descEl.textContent = details;
+
+            // Pre-fill issue description on booking form for convenience
+            const issueField = document.getElementById('issueDesc');
+            if (issueField && !issueField.value.trim()) {
+                issueField.value = "Requested service: " + serviceName + " (" + rate + ")";
+            }
+
+            boxEl.style.borderColor = '#38bdf8';
+            boxEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Handle repair booking form submission with instant confirmation
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('studentName').value.trim();
+            const section = document.getElementById('courseSection').value.trim();
+            const device = document.getElementById('deviceType').value;
+            const issue = document.getElementById('issueDesc').value.trim();
+            const confirmBox = document.getElementById('bookingConfirmation');
+
+            confirmBox.style.display = 'block';
+            confirmBox.innerHTML =
+                "<strong>Booking Logged!</strong> Thanks, <strong>" + name + "</strong> (" + section + "). " +
+                "We noted your <strong>" + device + "</strong> request: <em>\"" + issue + "\"</em>. " +
+                "Bring your school ID and back up your files before dropping by ByteFix Corner!";
+
+            this.reset();
+        });
+    </script>
+
 </body>
 </html>
